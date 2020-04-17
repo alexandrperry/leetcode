@@ -11,3 +11,17 @@ var maxSubArray = function(nums) {
     }
     return maxVal
 };
+
+// Caden's solutions
+
+var maxSubArray = function(nums) {
+    let maxVal = Number.NEGATIVE_INFINITY
+    let localMaxVal = 0
+    for(let i = 0;i<nums.length;i++){
+      localMaxVal = Math.max(nums[i],nums[i] + localMaxVal)
+      if(localMaxVal > maxVal){
+        maxVal = localMaxVal
+      }
+    }
+    return maxVal
+};
