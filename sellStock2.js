@@ -11,3 +11,15 @@ var maxProfit = function(prices) {
   }
   return profit
 };
+
+// good by memory 
+var maxProfit = function(prices) {
+  let profit = 0
+  prices.reduce((acc, next) => {
+      if (next > acc) {
+          diff += next - acc
+      }
+      return next
+  })
+  return profit
+};
