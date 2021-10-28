@@ -25,3 +25,28 @@ var twoSum = function(nums, target) {
       map.set(diff,i)
     }
 };
+
+//if sorted with memory optimization
+var twoSum = function(nums, target) {
+    nums = nums.sort((a,b) => a-b)
+    let start = 0;
+    let end = nums.length - 1;
+   const result = []
+   
+   while(start < end){
+        if (nums[start] + nums[end] === target){
+            result[0] = start;
+            result[1] = end ;
+            break;
+        }
+        else if (nums[start] + nums[end] < target){
+            start++;
+        }
+        else{
+            end--;
+        }
+   }
+   
+   
+   return result
+};
