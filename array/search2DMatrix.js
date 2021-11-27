@@ -1,23 +1,47 @@
+
 /**
- * @param {string} s
- * @return {number}
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
  */
-var lengthOfLongestSubstring = function(s) {
-    let res = 0;
+var searchMatrix = function(matrix, target) {
+    let j = matrix[0].length - 1, i = 0
     
-    for (let i = 0; i < s.length; i++){
-        const visited = new Map()
-        for(let j = i; j < s.length; j++){
-            if(visited.get(s[j]) === true){
-                break
-            }
-            else{
-                res = Math.max(res,j-i+1)
-                visited.set(s[j],true)
-            }
+    while(j >= 0 && i < matrix.length) {
+        if(matrix[i][j] === target) return true
+        
+        if(matrix[i][j] > target) j--
+        else i++
+    }
+    return false
+}
+
+
+var searchMatrix = function(matrix, target) {
+  
+    const rows = matrix.length;
+    const columns = matrix[0].length
+    
+    let start = 0;
+    let end = rows*columns-1;
+    
+    while(start<=end){
+        const middle = start+Math.floor((end-start)/2)
+        const middleElement = matrix[Math.floor(middle/columns)][middle%columns]
+        
+        if(target === middleElement){
+            return true
         }
-        visited.set(s[i],false)
+        
+        else if(target>middleElement){
+            start = middle+1
+        }
+        
+        else if(target<middleElement){
+            end = middle - 1;
+        }
     }
     
-    return res
+    return false
+    
 };
